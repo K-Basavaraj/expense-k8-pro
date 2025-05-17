@@ -6,21 +6,21 @@ metadata:
   labels:                
     app: mysql
     tier: db
-    project: espense 
+    project: expense 
 spec:
   replicas: 1            
   selector:              
     matchLabels:
       app: mysql
       tier: db 
-      project: espense  
+      project: expense  
 
   template:              
     metadata:
       labels:            
         app: mysql
         tier: db
-        project: espense 
+        project: expense 
     spec:
       containers:
       - name: mysql
@@ -38,7 +38,7 @@ spec:
   selector:
     app: mysql
     tier: db
-    project: espense
+    project: expense
   ports: 
   - name: mysql-port 
     protocol: TCP
