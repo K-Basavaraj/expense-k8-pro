@@ -6,36 +6,41 @@ metadata:
   labels:                
     app: mysql
     tier: db
+    project: espense 
 spec:
   replicas: 1            
   selector:              
     matchLabels:
       app: mysql
-      tier: db  
+      tier: db 
+      project: espense  
 
   template:              
     metadata:
       labels:            
         app: mysql
         tier: db
+        project: espense 
     spec:
       containers:
       - name: mysql
         image: basavaraj0509/mysql:v1
 
-# ---
-# kind: Service
-# apiVersion: v1 
+---
+kind: Service
+apiVersion: v1 
 
-# metadata: 
-#   name: nginx 
-
-# spec: 
-#   selector:
-#     app: nginx
-#     tier: frontend
-#   ports: 
-#   - name: nginx-service-port 
-#     protocol: TCP
-#     port: 80 
-#     targetPort: 80  
+metadata: 
+  name: mysql
+  namespace: expense
+ 
+spec: 
+  selector:
+    app: mysql
+    tier: db
+    project: espense
+  ports: 
+  - name: mysql-port 
+    protocol: TCP
+    port: 3306  #service port
+    targetPort: 3306 #container port (exposeoutside)  
