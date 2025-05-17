@@ -27,7 +27,7 @@ spec:
         image: basavaraj0509/frontend:v1
 ---
 kind: Service
-webVersion: v1 
+apiVersion: v1 
 
 metadata: 
   name: frontend
