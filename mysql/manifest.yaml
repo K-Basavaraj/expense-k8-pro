@@ -25,6 +25,18 @@ spec:
       containers:
       - name: mysql
         image: basavaraj0509/mysql:v1
+        # readinessProbe ensures the container is ready to accept traffic after startup.
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15 #probes use a 15-second initial delay to allow the database to initialize,
+          periodSeconds: 10 #check the connection every 10 seconds thereafter.
+        # livenessProbe ensures the container is restarted if it becomes unresponsive.
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15
+          periodSeconds: 10
 
 ---
 kind: Service
