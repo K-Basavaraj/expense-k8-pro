@@ -44,6 +44,19 @@ spec:
         envFrom:              #connecting to database 
         - configMapRef: 
             name: backend-config
+         # readinessProbe ensures the container is ready to accept traffic after startup.
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15 #probes use a 15-second initial delay to allow the backend to initialize,
+          periodSeconds: 10 #check the connection every 10 seconds thereafter.
+        # livenessProbe ensures the container is restarted if it becomes unresponsive.
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
 ---
 kind: Service
 apiVersion: v1 
