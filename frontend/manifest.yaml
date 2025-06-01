@@ -192,7 +192,7 @@ metadata:
   namespace: expense
 spec:
   serviceRef:
-    name: awesome-service # route traffic to the awesome-service
+    name: frontend # route traffic to the awesome-service
     port: 80
   targetGroupARN: arn:aws:elasticloadbalancing:us-east-1:688567303455:targetgroup/expense-dev/a0e4a6fb81d3e29c
   targetType: ip
